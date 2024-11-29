@@ -16,6 +16,9 @@ def greet_user():
     - Inconsistent indentation
     """
     pass  # TODO: Implement this function
+    greeting = "Hello, World!"
+    print(greeting)
+greet_user()
   
 
 # Exercise 2: Function Parameters and Type Hints
@@ -39,6 +42,10 @@ def personalized_greeting(name):
         Raises TypeError
     """
     pass  # TODO: Implement this function
+    if not isinstance(name, str):
+        raise TypeError("The name must be a string.")
+    return f"Hello, {name}!"
+print(personalized_greeting("Alice"))
   
 
 # Exercise 3: Multiple Parameters and Default Values
@@ -145,8 +152,9 @@ def factorial(n):
     - Not considering stack overflow
     """
     pass  # TODO: Implement this function
-  
+   
 
+   
 # Exercise 8: Complex Return Types and Dictionary Handling
 def analyze_numbers(numbers):
     """
@@ -172,7 +180,23 @@ def analyze_numbers(numbers):
         Average: 3.0
     """
     pass  # TODO: Implement this function
-  
+    if not numbers:
+        raise ValueError("The list of numbers is empty")
+    if not all(isinstance(num, (int, float)) for num in numbers):
+        raise TypeError("All elements in the list must be numbers")
+    
+    total_sum = sum(numbers)
+    average = total_sum / len(numbers)
+    maximum = max(numbers)
+    minimum = min(numbers)
+
+    return {
+        "sum" : total_sum,
+        "average" : average,
+        "maximum" : maximum,
+        "minimum" : minimum
+    }
+
 
 # Exercise 9: Default Parameters and Type Checking
 def create_profile(name, age, occupation="Student"):
@@ -192,7 +216,23 @@ def create_profile(name, age, occupation="Student"):
         ValueError: If age is negative
     """
     pass  # TODO: Implement this function
-  
+    if not isinstance(name,str):
+        raise TypeError("Name must be a string")
+    if not isinstance(age, int):
+        raise TypeError("Age must be an integer")
+    if not isinstance(occupation, str):
+        raise TypeError("Occupation must be a string")
+
+    
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    
+    return {
+        "name": name,
+        "age" : age,
+        "occupation"
+          : occupation
+          }
 
 # Exercise 10: Complex Logic and Multiple Validation
 def validate_password(password):
@@ -234,6 +274,15 @@ def validate_password(password):
     - Forgetting to validate input type before processing
     """
     pass  # TODO: Implement this function
+    if not isinstance(password, str):
+        raise TypeError("Password must be a string")
+    
+    has_min_length = len(password) >= 8
+    has_uppercase = any(char.isupper() for char in password)
+    has_lowercase = any(char.islower() for char in password)
+    has_digit = any(char.isdigit() for char in password)
+
+    return has_min_length and has_uppercase and has_lowercase and has_digit
 
 
 if __name__ == "__main__":
